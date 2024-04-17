@@ -5,8 +5,12 @@ match = 1
 mismatch = -1
 gap_penalty = -2
 
-rows = len(seq1) + 2
-cols = len(seq2) + 2
+rows = len(seq1) + 1  # Removido o adicional +2
+cols = len(seq2) + 1  # Removido o adicional +2
+
+right = 0
+down = 0
+diag = 0
 
 score_matrix = [[0 for _ in range(cols)] for _ in range(rows)]
 
@@ -19,7 +23,7 @@ for j in range(1, cols):
 
 for i in range(1, rows):
     for j in range(1, cols):
-        if seq1[i - 2] == seq2[j - 2]:  
+        if seq1[i - 1] == seq2[j - 1]:  # Corrigido o acesso aos índices das sequências
             score = match
         else:
             score = mismatch
