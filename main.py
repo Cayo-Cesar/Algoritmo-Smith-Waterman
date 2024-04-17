@@ -2,6 +2,16 @@
 #Autor: Cayo Cesar
 #Data: 17/04/2024
 
+# Função para imprimir a matriz de score e salvar em um txt
+def print_matrix(matrix):
+    with open('score_matrix.txt', 'w') as file:
+        for row in matrix:
+            for value in row:
+                print(value, end='\t')
+                file.write(str(value) + '\t')
+            print()
+            file.write('\n')
+
 #Sequencias de DNA
 seq1 = "ATCG" # Vertical
 seq2 = "TCG"  # Horizontal
@@ -45,5 +55,4 @@ for i in range(1, rows):
         score_matrix[i][j] = max(right, down, diag)
 
 # Impressão da matriz de score
-for row in score_matrix:
-    print(row)
+print_matrix(score_matrix)
