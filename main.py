@@ -1,17 +1,26 @@
+#Implementação do algoritmo de Smith-Waterman para alinhamento local de sequências de DNA
+#Autor: Cayo Cesar
+#Data: 17/04/2024
+
+#Sequencias de DNA
 seq1 = "ATCG" # Vertical
 seq2 = "TCG"  # Horizontal
 
+#Scores
 match = 1
 mismatch = -1
 gap_penalty = -2
 
-rows = len(seq1) + 1  # Removido o adicional +2
-cols = len(seq2) + 1  # Removido o adicional +2
+# Inicialização das linhas e colunas da matriz de score
+rows = len(seq1) + 1 
+cols = len(seq2) + 1  
 
+# Inicialização do valor das variaveis de direção
 right = 0
 down = 0
 diag = 0
 
+# Inicialização da matriz de score
 score_matrix = [[0 for _ in range(cols)] for _ in range(rows)]
 
 # Inicialização dos valores de penalidade de gap para as linhas e colunas iniciais
@@ -23,7 +32,7 @@ for j in range(1, cols):
 
 for i in range(1, rows):
     for j in range(1, cols):
-        if seq1[i - 1] == seq2[j - 1]:  # Corrigido o acesso aos índices das sequências
+        if seq1[i - 1] == seq2[j - 1]:  
             score = match
         else:
             score = mismatch
