@@ -27,7 +27,7 @@ for i in range(1, rows):
         down = score_matrix[i - 1][j] + gap_penalty
         diag = score_matrix[i - 1][j - 1] + score
 
-        score_matrix[i][j] = max(right, down, diag, 0)
+        score_matrix[i][j] = max(right, down, diag)
 
 for row in score_matrix:
     print(row)
