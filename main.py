@@ -1,5 +1,5 @@
-seq1 = "AGTACCA" # Vertical
-seq2 = "CATTCC"  # Horizontal
+seq1 = "ATCG" # Vertical
+seq2 = "TCG"  # Horizontal
 
 match = 1
 mismatch = -1
@@ -10,11 +10,12 @@ cols = len(seq2) + 2
 
 score_matrix = [[0 for _ in range(cols)] for _ in range(rows)]
 
-for i in range(2, rows):
-    score_matrix[i][0] = gap_penalty * (i - 1)
+# Inicialização dos valores de penalidade de gap para as linhas e colunas iniciais
+for i in range(1, rows):
+    score_matrix[i][0] = gap_penalty * i
 
-for j in range(2, cols):
-    score_matrix[0][j] = gap_penalty * (j - 1)
+for j in range(1, cols):
+    score_matrix[0][j] = gap_penalty * j
 
 for i in range(1, rows):
     for j in range(1, cols):
