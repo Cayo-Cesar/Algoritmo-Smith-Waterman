@@ -13,6 +13,10 @@ cols = len(seq2) + 1
 j = 0
 i = 0
 
+right = None
+down = None
+diag = None
+
 score_matrix = [[0 for j in range(cols)] for i in range(rows)]
 
 for j in range(1, cols):
