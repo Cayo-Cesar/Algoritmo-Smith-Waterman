@@ -18,7 +18,7 @@ score_matrix = [[0 for j in range(cols)] for i in range(rows)]
 
 # Inicialização da primeira linha com penalidades de gap
 for j in range(1, cols):
-    score_matrix[0][j] = gap_penalty + j
+    score_matrix[0][j] = gap_penalty * j
 
 # Inicialização da primeira coluna com penalidades de gap
 for i in range(1, rows):
