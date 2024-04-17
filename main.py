@@ -25,7 +25,6 @@ for j in range(1, cols):
 for i in range(1, rows):
     score_matrix[i][0] = gap_penalty * i
 
-TODO: Corrigir a implementação da matriz, pois o al
 for i in range(1, rows):
     for j in range(1, cols):
         if seq1[i - 1] == seq2[j - 1]:
