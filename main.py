@@ -30,6 +30,7 @@ for i in range(1, rows):
 for j in range(1, cols):
     score_matrix[0][j] = gap_penalty * j
 
+# Preenchimento da matriz de score
 for i in range(1, rows):
     for j in range(1, cols):
         if seq1[i - 1] == seq2[j - 1]:  
@@ -43,5 +44,6 @@ for i in range(1, rows):
 
         score_matrix[i][j] = max(right, down, diag)
 
+# Impressão da matriz de score
 for row in score_matrix:
     print(row)
