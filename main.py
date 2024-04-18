@@ -10,7 +10,7 @@ def print_matrix(matrix):
                 print(value, end='\t')
                 file.write(str(value) + '\t')
             print()
-            file.write('\n')l
+            file.write('\n')
 
 #Sequencias de DNA
 seq1 = "ATCG" # Vertical
