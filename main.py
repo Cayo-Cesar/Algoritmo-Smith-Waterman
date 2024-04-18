@@ -4,9 +4,11 @@
 
 # Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
+
+    pilha_movimentos = []
     rows = len(seq1) + 1
     cols = len(seq2) + 1
-    
+
     right = 0
     down = 0
     diag = 0
@@ -29,8 +31,17 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
             right = score_matrix[i][j - 1] + gap_penalty
             down = score_matrix[i - 1][j] + gap_penalty
             diag = score_matrix[i - 1][j - 1] + score
+            
+            # if right == max(right, down, diag):
+            #     pilha_movimentos.append('right')
+            # elif down == max(right, down, diag):
+            #     pilha_movimentos.append('down')
+            # else:
+            #     pilha_movimentos.append('diag')
 
             score_matrix[i][j] = max(right, down, diag)
+
+            # print(pilha_movimentos)
 
     return score_matrix
 
