@@ -8,16 +8,17 @@ O algoritmo Smith-Waterman é um algoritmo de programação dinâmica usado para
 
 ## Descrição do Programa
 
-O programa neste repositório implementa o algoritmo Smith-Waterman em [linguagem de programação]. Ele recebe duas sequências de entrada e calcula o alinhamento ótimo e o escore de similaridade entre elas. O programa fornece uma interface amigável para inserir as sequências e exibe o alinhamento e o escore como saída.
+O programa neste repositório implementa o algoritmo Smith-Waterman em python. Ele recebe duas sequências de entrada e calcula o alinhamento ótimo e o score de similaridade entre elas. O programa fornece uma interface amigável para inserir as sequências e exibe o alinhamento e o escore como saída.
 
 ## Uso
 
 Para utilizar o programa, siga estes passos:
 
-1. Clone o repositório: `git clone https://github.com/cayo-cesar/Algoritmo-Smith-Waterman.git`
-2. Navegue até o diretório do projeto: `cd Algoritmo-Smith-Waterman`
-3. Compile e execute o programa
-4. Insira no código as sequencias e os valores do Score
-5. O programa exibirá o alinhamento ótimo e o escore de similaridade.
+1. Clone o repositório: `git clone https://github.com/cayo-cesar/Algoritmo-Smith-Waterman.git`.
+2. Navegue até o diretório do projeto: `cd Algoritmo-Smith-Waterman`.
+3. Adicione no arquivo config.txt as sequencias de DNA e os valores dos scores.
+4. Compile e execute o programa.
+5. O programa gerará um arquivo .txt com a matriz de scores.
+6. O programa exibirá o alinhamento ótimo e o escore de similaridade.
 
 Sinta-se à vontade para explorar o código e modificá-lo de acordo com suas necessidades.

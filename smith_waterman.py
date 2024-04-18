@@ -1,12 +1,25 @@
-#Implementação do algoritmo de Smith-Waterman para alinhamento local de sequências de DNA
+#Implementação do algoritmo de Smith-Waterman para alinhamento global de sequências de DNA
 #Autor: Cayo Cesar
 #Data: 17/04/2024
 
+'''
+A entrada de dados se da por um arquivo config.txt no formato abaixo:
+
+seq1    # Vertical
+seq2    # Horizontal
+match
+mismatch
+gap_penalty
+
+'''
+
 # Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
+
+    pilha_movimentos = []
     rows = len(seq1) + 1
     cols = len(seq2) + 1
-    
+
     right = 0
     down = 0
     diag = 0
@@ -29,7 +42,7 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
             right = score_matrix[i][j - 1] + gap_penalty
             down = score_matrix[i - 1][j] + gap_penalty
             diag = score_matrix[i - 1][j - 1] + score
-
+            
             score_matrix[i][j] = max(right, down, diag)
 
     return score_matrix
@@ -44,14 +57,13 @@ def print_matrix(matrix):
             print()
             file.write('\n')
 
-#Sequencias de DNA
-seq1 = "ATCG" # Vertical
-seq2 = "TCG"  # Horizontal
-
-#Scores
-match = 1
-mismatch = -1
-gap_penalty = -2
+# Leitura das configurações do arquivo
+with open('config.txt', 'r') as file:
+    seq1 = file.readline().strip()
+    seq2 = file.readline().strip()
+    match = int(file.readline().strip())
+    mismatch = int(file.readline().strip())
+    gap_penalty = int(file.readline().strip())
 
 # Chamada da função score_matrix
 score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
