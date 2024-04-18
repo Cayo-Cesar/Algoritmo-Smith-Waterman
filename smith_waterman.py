@@ -12,7 +12,6 @@ mismatch
 gap_penalty
 
 '''
-
 # Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
@@ -47,6 +46,54 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
     return score_matrix
 
+def backtrack(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
+    rows = len(seq1) + 1
+    cols = len(seq2) + 1
+
+    i = rows - 1
+    j = cols - 1
+
+    align1 = ''
+    align2 = ''
+
+    while i > 0 and j > 0:
+        score = score_matrix[i][j]
+        score_diag = score_matrix[i - 1][j - 1]
+        score_up = score_matrix[i][j - 1]
+        score_left = score_matrix[i - 1][j]
+
+        if score == score_diag + (match if seq1[i - 1] == seq2[j - 1] else mismatch):
+            align1 += seq1[i - 1]
+            align2 += seq2[j - 1]
+            i -= 1
+            j -= 1
+        elif score == score_left + gap_penalty:
+            align1 += seq1[i - 1]
+            align2 += '-'
+            i -= 1
+        elif score == score_up + gap_penalty:
+            align1 += '-'
+            align2 += seq2[j - 1]
+            j -= 1
+
+    while i > 0:
+        align1 += seq1[i - 1]
+        align2 += '-'
+        i -= 1
+
+    while j > 0:
+        align1 += '-'
+        align2 += seq2[j - 1]
+        j -= 1
+
+    align1 = align1[::-1]
+    align2 = align2[::-1]
+
+    print(align1)
+    print(align2)
+
+    return align1, align2
+
 # Função para imprimir a matriz de score e salvar em um txt
 def print_matrix(matrix):
     with open('score_matrix.txt', 'w') as file:
@@ -70,3 +117,6 @@ score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
 
 # Impressão da matriz de score
 print_matrix(score_matrix)
+
+# Chamada da função backtrack
+align1, align2 = backtrack(score_matrix, seq1, seq2, match, mismatch, gap_penalty)
