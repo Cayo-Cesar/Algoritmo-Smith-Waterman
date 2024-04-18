@@ -2,11 +2,11 @@
 #Autor: Cayo Cesar
 #Data: 17/04/2024
 
-
+# Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
     rows = len(seq1) + 1
     cols = len(seq2) + 1
-
+    
     right = 0
     down = 0
     diag = 0
