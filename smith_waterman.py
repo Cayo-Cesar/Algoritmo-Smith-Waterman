@@ -57,6 +57,11 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
     return score_matrix
 
+# Função para inverter a matriz de score
+def invert_matrix(matrix):
+    inverted_matrix = [list(row) for row in reversed(matrix)]
+    return inverted_matrix
+
 # Função para imprimir a matriz de score e salvar em um txt
 def print_matrix(matrix):
     with open('score_matrix.txt', 'w') as file:
@@ -67,17 +72,14 @@ def print_matrix(matrix):
             print()
             file.write('\n')
 
-def invert_matrix(matrix):
-    inverted_matrix = [list(row) for row in reversed(matrix)]
-    return inverted_matrix
-
 # Leitura das configurações do arquivo
-with open('config.txt', 'r') as file:
+with open('input.txt', 'r') as file:
     seq1 = file.readline().strip()
     seq2 = file.readline().strip()
-    match = int(file.readline().strip())
-    mismatch = int(file.readline().strip())
     gap_penalty = int(file.readline().strip())
+    mismatch = int(file.readline().strip())
+    match = int(file.readline().strip())
+    
 
 # Chamada da função score_matrix
 score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
