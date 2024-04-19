@@ -16,7 +16,7 @@ gap_penalty
 # Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
-    pilha_movimentos = []
+    # pilha_movimentos = []
     rows = len(seq1) + 1
     cols = len(seq2) + 1
 
@@ -42,7 +42,17 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
             right = score_matrix[i][j - 1] + gap_penalty
             down = score_matrix[i - 1][j] + gap_penalty
             diag = score_matrix[i - 1][j - 1] + score
-            
+
+            # # Append na pilha de movimentos para a realização do backtracing posteriormente
+            # if max(right, down, diag) == diag:
+            #     pilha_movimentos.append('D')
+
+            # elif max(right, down, diag) == down:
+            #     pilha_movimentos.append('U')
+
+            # elif max(right, down, diag) == right:
+            #     pilha_movimentos.append('L')
+
             score_matrix[i][j] = max(right, down, diag)
 
     return score_matrix
