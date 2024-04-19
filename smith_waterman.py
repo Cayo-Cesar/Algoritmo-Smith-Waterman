@@ -10,8 +10,8 @@ seq2    # Horizontal
 match
 mismatch
 gap_penalty
-
 '''
+
 # Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
