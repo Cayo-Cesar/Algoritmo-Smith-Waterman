@@ -63,14 +63,31 @@ def invert_matrix(matrix):
     return inverted_matrix
 
 # Função para imprimir a matriz de score e salvar em um txt
-def print_matrix(matrix):
-    with open('score_matrix.txt', 'w') as file:
-        for row in matrix:
-            for value in row:
-                print(value, end='\t')
-                file.write(str(value) + '\t')
-            print()
-            file.write('\n')
+# Função para imprimir a matriz de score e salvar em um txt
+def print_matrix(matrix, seq1, seq2):
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    # Abre o arquivo em modo de escrita
+    with open('matrix.txt', 'w') as f:
+        # Imprimir a matriz de score
+        seq1_reversed = list(reversed(seq1))
+        for i in range(rows):
+            # Imprimir uma coluna adicional com espaços em branco antes das bases
+            if i < rows - 1:
+                f.write(seq1_reversed[i] + "\t")
+            else:
+                f.write("U" + "\t")
+            # Imprimir os valores da matriz
+            for j in range(cols):
+                f.write(str(matrix[i][j]) + "\t")
+            f.write("\n")
+
+        # Imprimir uma linha adicional com as bases na parte inferior
+        f.write("\tU")
+        for base in reversed(seq2):
+            f.write("\t" + base)
+        f.write("\n")
 
 # Leitura das configurações do arquivo
 with open('input.txt', 'r') as file:
@@ -88,4 +105,4 @@ score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
 inverted_matrix = invert_matrix(score_matrix)
 
 # Impressão da matriz de score
-print_matrix(inverted_matrix)
+print_matrix(inverted_matrix, seq1, seq2)
