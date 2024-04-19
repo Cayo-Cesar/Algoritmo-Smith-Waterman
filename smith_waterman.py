@@ -63,7 +63,6 @@ def invert_matrix(matrix):
     return inverted_matrix
 
 # Função para imprimir a matriz de score e salvar em um txt
-# Função para imprimir a matriz de score e salvar em um txt
 def print_matrix(matrix, seq1, seq2):
     rows = len(matrix)
     cols = len(matrix[0])
