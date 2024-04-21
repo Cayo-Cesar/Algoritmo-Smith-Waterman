@@ -54,7 +54,6 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
             #     pilha_movimentos.append('L')
 
             score_matrix[i][j] = max(right, down, diag)
-
     return score_matrix
 
 # Função para inverter a matriz de score
@@ -91,7 +90,6 @@ with open('input.txt', 'r') as file:
     mismatch = int(file.readline().strip())
     match = int(file.readline().strip())
     
-
 # Chamada da função score_matrix
 score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
 
