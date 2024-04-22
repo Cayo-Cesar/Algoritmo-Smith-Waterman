@@ -173,3 +173,6 @@ inverted_matrix = invert_matrix(score_matrix)
 
 # Impressão da matriz de score
 print_matrix(inverted_matrix, seq1, seq2)
+
+# Chamada da função backtracing
+align1, align2 = backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty)
