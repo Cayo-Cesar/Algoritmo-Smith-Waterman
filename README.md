@@ -16,7 +16,7 @@ Para utilizar o programa, siga estes passos:
 
 1. Clone o repositório: `git clone https://github.com/cayo-cesar/Algoritmo-Smith-Waterman.git`.
 2. Navegue até o diretório do projeto: `cd Algoritmo-Smith-Waterman`.
-3. Adicione no arquivo config.txt as sequencias de DNA e os valores dos scores.
+3. Adicione no arquivo input.txt as sequencias de DNA e os valores dos scores.
 4. Compile e execute o programa.
 5. O programa gerará um arquivo .txt com a matriz de scores.
 6. O programa exibirá o alinhamento ótimo e o escore de similaridade.

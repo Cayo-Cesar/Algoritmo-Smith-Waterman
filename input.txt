@@ -1,0 +1,5 @@
+AGTACCA
+CATTCC
+-2
+-1
+3
