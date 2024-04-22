@@ -122,8 +122,8 @@ def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
     align2 = align2[::-1]
 
     # Impressão dos alinhamentos
-    print(align1)
-    print(align2)
+    #print(align1)
+    #print(align2)
 
     return align1, align2
 
@@ -176,3 +176,8 @@ print_matrix(inverted_matrix, seq1, seq2)
 
 # Chamada da função backtracing
 align1, align2 = backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty)
+
+with open('matrix.txt', 'a') as f:
+    f.write("\nAlinhamento:\n")
+    f.write(align1 + "\n")
+    f.write(align2 + "\n")
