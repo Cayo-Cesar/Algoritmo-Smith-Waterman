@@ -22,3 +22,16 @@ Para utilizar o programa, siga estes passos:
 6. O programa exibirá o alinhamento ótimo e o escore de similaridade.
 
 Sinta-se à vontade para explorar o código e modificá-lo de acordo com suas necessidades.
+
+## Entrada
+
+![image](https://github.com/Cayo-Cesar/Algoritmo-Smith-Waterman/assets/96149641/2f825eba-849e-492d-9a64-9b6528f80855)
+
+## Saída
+
+![image](https://github.com/Cayo-Cesar/Algoritmo-Smith-Waterman/assets/96149641/d0cc7e1c-bf3a-40d6-9789-258c096eb201)
+
+
+
+
+
