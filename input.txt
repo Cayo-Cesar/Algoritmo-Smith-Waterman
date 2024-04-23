@@ -1,5 +1,7 @@
-AGTACCA
-CATTCC
+ATCG
+TCG
 -2
 -1
 3
+
+
