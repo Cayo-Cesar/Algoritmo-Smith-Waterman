@@ -1,6 +1,6 @@
 # Algoritmo-Smith-Waterman
 
-Este repositório contém uma implementação do algoritmo Smith-Waterman.
+Este repositório contém uma implementação do algoritmo Smith-Waterman utilizado pra alinhamento global de sequencias de DNA.
 
 ## Descrição do Algoritmo
 
