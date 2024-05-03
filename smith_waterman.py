@@ -16,7 +16,7 @@ gap_penalty
 # Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
-    # pilha_movimentos = []
+    # stack_movements = []
     rows = len(seq1) + 1
     cols = len(seq2) + 1
 
@@ -50,13 +50,13 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
             # # Append na pilha de movimentos para a realização do backtracing posteriormente
             # if max(right, down, diag) == diag:
-            #     pilha_movimentos.append('D')
+            #     stack_movements.append('D')
 
             # elif max(right, down, diag) == down:
-            #     pilha_movimentos.append('U')
+            #     stack_movements.append('U')
 
             # elif max(right, down, diag) == right:
-            #     pilha_movimentos.append('L')
+            #     stack_movements.append('L')
 
     #Atribui o maior valor a posição atual da matriz
             score_matrix[i][j] = max(right, down, diag)
@@ -177,6 +177,7 @@ print_matrix(inverted_matrix, seq1, seq2)
 align1, align2 = backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty)
 
 with open('matrix.txt', 'a') as f:
+    f.write("---------------------------------------------")
     f.write("\nAlinhamento:\n")
     f.write(align1 + "\n")
     f.write(align2 + "\n")
