@@ -1,6 +1,5 @@
 #Implementação do algoritmo de Smith-Waterman para alinhamento global de sequências de DNA
 #Autor: Cayo Cesar
-#Data: 23/04/2024
 
 '''
 A entrada de dados se da por um arquivo input.txt no formato abaixo:
