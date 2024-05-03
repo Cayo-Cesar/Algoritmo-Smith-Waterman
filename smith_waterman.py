@@ -16,7 +16,7 @@ gap_penalty
 # Função para criar a matriz de score
 def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
-    # pilha_movimentos = []
+    # stack_movements = []
     rows = len(seq1) + 1
     cols = len(seq2) + 1
 
@@ -50,32 +50,30 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
             # # Append na pilha de movimentos para a realização do backtracing posteriormente
             # if max(right, down, diag) == diag:
-            #     pilha_movimentos.append('D')
+            #     stack_movements.append('D')
 
             # elif max(right, down, diag) == down:
-            #     pilha_movimentos.append('U')
+            #     stack_movements.append('U')
 
             # elif max(right, down, diag) == right:
-            #     pilha_movimentos.append('L')
+            #     stack_movements.append('L')
 
     #Atribui o maior valor a posição atual da matriz
             score_matrix[i][j] = max(right, down, diag)
     return score_matrix
 
 def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
-    # Inicialização de variáveis
+
     rows = len(seq1) + 1
     cols = len(seq2) + 1
 
-    # Inicialização de variáveis para percorrer a matriz
     i = rows - 1
     j = cols - 1
 
-    # Inicialização de strings para armazenar os alinhamentos
-    align1 = ''
-    align2 = ''
+    # Inicialização da pilha para armazenar os movimentos
+    stack = []
 
-    # Loop para percorrer a matriz de score
+    # Percorrer a matriz de scores
     while i > 0 and j > 0:
         # Cálculo do score atual e dos scores adjacentes
         score = score_matrix[i][j]
@@ -83,47 +81,48 @@ def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
         score_up = score_matrix[i][j - 1]
         score_left = score_matrix[i - 1][j]
 
-        '''
-        Se o score atual for igual ao score da diagonal mais o match ou mismatch, 
-        significa que o elemento veio da diagonal e vai ser adicionado na sequencia 
-        de alinhamento de ambas as sequências. Se o score atual for igual ao score
-        da esquerda mais o gap_penalty ou de cima mais o gap_penalty, significa que 
-        o elemento veio da esquerda ou de cima, nesse caso somente uma das sequências 
-        vai ser adicionada na sequência de alinhamento vai ser adicionada um gap.
-        '''
+        # Determina o movimento atual e adiciona à pilha
         if score == score_diag + (match if seq1[i - 1] == seq2[j - 1] else mismatch):
-            align1 += seq1[i - 1]
-            align2 += seq2[j - 1]
+            stack.append('D')  # Diagonal
             i -= 1
             j -= 1
         elif score == score_left + gap_penalty:
-            align1 += seq1[i - 1]
-            align2 += '-'
+            stack.append('U')  # Up
             i -= 1
         elif score == score_up + gap_penalty:
-            align1 += '-'
-            align2 += seq2[j - 1]
+            stack.append('L')  # Left
             j -= 1
 
-    # Se i ou j for maior que 0, significa que ainda existem elementos a serem adicionados
-    # nas sequências de alinhamento, nesse caso, adicionamos os elementos restantes e os gaps.
+    # Completa a pilha 
     while i > 0:
-        align1 += seq1[i - 1]
-        align2 += '-'
+        stack.append('U')
         i -= 1
-
     while j > 0:
-        align1 += '-'
-        align2 += seq2[j - 1]
+        stack.append('L')
         j -= 1
 
-    # Inversão das strings para obter o alinhamento correto
-    align1 = align1[::-1]
-    align2 = align2[::-1]
+    # Inversão da pilha
+    stack.reverse()
 
-    # Impressão dos alinhamentos
-    #print(align1)
-    #print(align2)
+    # Reconstrução dos alinhamentos a partir da pilha de movimentos
+    align1 = ''
+    align2 = ''
+    i = 0
+    j = 0
+    for move in stack:
+        if move == 'D':
+            align1 += seq1[i]
+            align2 += seq2[j]
+            i += 1
+            j += 1
+        elif move == 'U':
+            align1 += seq1[i]
+            align2 += '-'
+            i += 1
+        elif move == 'L':
+            align1 += '-'
+            align2 += seq2[j]
+            j += 1
 
     return align1, align2
 
@@ -178,6 +177,7 @@ print_matrix(inverted_matrix, seq1, seq2)
 align1, align2 = backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty)
 
 with open('matrix.txt', 'a') as f:
+    f.write("---------------------------------------------")
     f.write("\nAlinhamento:\n")
     f.write(align1 + "\n")
     f.write(align2 + "\n")
