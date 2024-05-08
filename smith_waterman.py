@@ -112,7 +112,7 @@ def invert_matrix(matrix):
     return inverted_matrix
 
 # Função para imprimir a matriz de score e salvar em um txt
-def print_matrix(matrix, seq1, seq2):
+def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
     rows = len(matrix)
     cols = len(matrix[0])
 
@@ -121,18 +121,19 @@ def print_matrix(matrix, seq1, seq2):
         # Imprime a sequência 2
         seq1_reversed = list(reversed(seq1))
         # Imprime a matriz de score e a sequência 1 ja invertida e é feita a adição do valor U na primeira posição da matriz
+        f.write("======================================================================================================================================================================================================================================================================================================\n")
         for i in range(rows):
             if i < rows - 1:
-                f.write(seq1_reversed[i].center(7) + "\t")
+                f.write(seq1_reversed[i].center(3) + "\t")
             else:
-                f.write("U".center(7) + "\t")
+                f.write("U".center(3) + "\t")
             for j in range(cols):
-                f.write(str(matrix[i][j]).center(7) + "\t")
+                f.write(str(matrix[i][j]).center(3) + "\t")
             f.write("\n")
         # Imprime a sequência 2
-        f.write("\t\t\t\t\t U   ")
+        f.write("\t   U  ")
         for base in seq2:
-            f.write("\t" + base.center(7))
+            f.write("\t" + base.center(3))
         f.write("\n")
         
 # Leitura das configurações do arquivo
@@ -142,6 +143,7 @@ with open('input.txt', 'r') as file:
     gap_penalty = int(file.readline().strip())
     mismatch = int(file.readline().strip())
     match = int(file.readline().strip())
+    
     
 # Chamada da função score_matrix
 score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
