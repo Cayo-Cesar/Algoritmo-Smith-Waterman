@@ -104,14 +104,18 @@ def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
             align2 += seq2[j]
             j += 1
 
+    # Impressão dos alinhamentos
+    with open('matrix.txt', 'a') as f:
+        f.write("\n\nAlinhamento:\n\n")
+        f.write(align1 + "\n")
+        f.write(align2 + "\n")
+
     return align1, align2
 
-# Função para inverter a matriz de score
 def invert_matrix(matrix):
     inverted_matrix = [list(row) for row in reversed(matrix)]
     return inverted_matrix
 
-# Função para imprimir a matriz de score e salvar em um txt
 def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
     rows = len(matrix)
     cols = len(matrix[0])
@@ -139,7 +143,6 @@ def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
         # Imprime os valores de match, mismatch e gap_penalty na mesma linha que o score
         f.write("\n\n========== SCORE: " + str(last_score) + " | Match: " + str(match) + " | Mismatch: " + str(mismatch) + " | Gap Penalty: " + str(gap_penalty) + " ==========")
         
-# Leitura das configurações do arquivo
 with open('input.txt', 'r') as file:
     seq1 = file.readline().strip()
     seq2 = file.readline().strip()
@@ -147,20 +150,11 @@ with open('input.txt', 'r') as file:
     mismatch = int(file.readline().strip())
     match = int(file.readline().strip())
     
-    
-# Chamada da função score_matrix
 score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
 
-# Função para inverter a matriz de score
 inverted_matrix = invert_matrix(score_matrix)
 
-# Impressão da matriz de score
 print_matrix(inverted_matrix, seq1, seq2, match, mismatch, gap_penalty)
 
-# Chamada da função backtracing
 align1, align2 = backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty)
 
-with open('matrix.txt', 'a') as f:
-    f.write("\n\nAlinhamento:\n\n")
-    f.write(align1 + "\n")
-    f.write(align2 + "\n")
