@@ -112,7 +112,7 @@ def invert_matrix(matrix):
     return inverted_matrix
 
 # Função para imprimir a matriz de score e salvar em um txt
-def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
+def print_matrix(matrix, seq1, seq2):
     rows = len(matrix)
     cols = len(matrix[0])
 
@@ -121,7 +121,6 @@ def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
         # Imprime a sequência 2
         seq1_reversed = list(reversed(seq1))
         # Imprime a matriz de score e a sequência 1 ja invertida e é feita a adição do valor U na primeira posição da matriz
-        f.write("======================================================================================================================================================================================================================================================================================================\n")
         for i in range(rows):
             if i < rows - 1:
                 f.write(seq1_reversed[i].center(3) + "\t")
