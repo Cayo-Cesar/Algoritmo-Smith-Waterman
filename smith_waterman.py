@@ -55,7 +55,6 @@ def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
 
     # Percorrer a matriz de scores
     while i > 0 and j > 0:
-        # Cálculo do score atual e dos scores adjacentes
         score = score_matrix[i][j]
         score_diag = score_matrix[i - 1][j - 1]
         score_up = score_matrix[i][j - 1]
@@ -81,10 +80,9 @@ def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
         stack.append('L')
         j -= 1
 
-    # Inversão da pilha
     stack.reverse()
 
-    # Reconstrução dos alinhamentos a partir da pilha de movimentos
+    # Reconstrução dos alinhamentos
     align1 = ''
     align2 = ''
     i = 0
