@@ -1,5 +1,4 @@
 #Implementação do algoritmo de Smith-Waterman para alinhamento global de sequências de DNA
-#Autor: Cayo Cesar
 
 '''
 A entrada de dados se da por um arquivo input.txt no formato abaixo:
@@ -37,7 +36,7 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
             down = score_matrix[i - 1][j] + gap_penalty
             diag = score_matrix[i - 1][j - 1] + score
 
-            
+
             score_matrix[i][j] = max(right, down, diag)
 
     return score_matrix
