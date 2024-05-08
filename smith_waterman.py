@@ -107,6 +107,10 @@ def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
         f.write(align1 + "\n")
         f.write(align2 + "\n")
 
+    # print(align1)
+    # print("\n")
+    # print(align2)
+    
     return align1, align2
 
 def invert_matrix(matrix):
