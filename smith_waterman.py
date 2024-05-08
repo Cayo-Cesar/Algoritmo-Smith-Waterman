@@ -112,15 +112,18 @@ def invert_matrix(matrix):
     return inverted_matrix
 
 # Função para imprimir a matriz de score e salvar em um txt
-def print_matrix(matrix, seq1, seq2):
+def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
     rows = len(matrix)
     cols = len(matrix[0])
+
+    # Último número da matriz (canto superior direito)
+    last_score = matrix[0][-1]
 
     # Salva a matriz em um arquivo txt
     with open('matrix.txt', 'w') as f:
         # Imprime a sequência 2
         seq1_reversed = list(reversed(seq1))
-        # Imprime a matriz de score e a sequência 1 ja invertida e é feita a adição do valor U na primeira posição da matriz
+        # Imprime a matriz de score e a sequência 1 já invertida e é feita a adição do valor U na primeira posição da matriz
         for i in range(rows):
             if i < rows - 1:
                 f.write(seq1_reversed[i].center(3) + "\t")
@@ -129,11 +132,12 @@ def print_matrix(matrix, seq1, seq2):
             for j in range(cols):
                 f.write(str(matrix[i][j]).center(3) + "\t")
             f.write("\n")
-        # Imprime a sequência 2
-        f.write("\t   U  ")
+        # Imprime o último número da matriz no canto superior direito
+        f.write("\t U  ")
         for base in seq2:
             f.write("\t" + base.center(3))
-        f.write("\n")
+        # Imprime os valores de match, mismatch e gap_penalty na mesma linha que o score
+        f.write("\n\n========== SCORE: " + str(last_score) + " | Match: " + str(match) + " | Mismatch: " + str(mismatch) + " | Gap Penalty: " + str(gap_penalty) + " ==========")
         
 # Leitura das configurações do arquivo
 with open('input.txt', 'r') as file:
@@ -151,13 +155,12 @@ score_matrix = score_matrix(seq1, seq2, match, mismatch, gap_penalty)
 inverted_matrix = invert_matrix(score_matrix)
 
 # Impressão da matriz de score
-print_matrix(inverted_matrix, seq1, seq2)
+print_matrix(inverted_matrix, seq1, seq2, match, mismatch, gap_penalty)
 
 # Chamada da função backtracing
 align1, align2 = backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty)
 
 with open('matrix.txt', 'a') as f:
-    f.write("---------------------------------------------")
-    f.write("\nAlinhamento:\n")
+    f.write("\n\nAlinhamento:\n\n")
     f.write(align1 + "\n")
     f.write(align2 + "\n")
