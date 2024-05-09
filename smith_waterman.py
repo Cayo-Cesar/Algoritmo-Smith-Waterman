@@ -27,15 +27,13 @@ def score_matrix(seq1, seq2, match, mismatch, gap_penalty):
 
     for i in range(1, rows):
         for j in range(1, cols):
-            if seq1[i - 1] == seq2[j - 1]:
-                score = match
-            else:
-                score = mismatch
+            score = match if seq1[i - 1] == seq2[j - 1] else mismatch
 
-            right = score_matrix[i][j - 1] + gap_penalty
-            down = score_matrix[i - 1][j] + gap_penalty
-            diag = score_matrix[i - 1][j - 1] + score
-
+            # Determina a lista de direções, podendo ir pra direita, baixo ou diagonal
+            directions = [(i, j - 1), (i - 1, j), (i - 1, j - 1)]
+            # Map aplica a score_matrix a soma de score se for diagonal ou de gap se for direita ou baixo
+            right, down, diag = map(lambda x: score_matrix[x[0]][x[1]] + (score if x == (i - 1, j - 1) else gap_penalty), directions)
+            # Adiciona o maior dos 3 na matriz
             score_matrix[i][j] = max(right, down, diag)
 
     return score_matrix
@@ -124,7 +122,6 @@ def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
     # Último número da matriz (canto superior direito)
     last_score = matrix[0][-1]
 
-    # Salva a matriz em um arquivo txt
     with open('output.txt', 'w') as f:
         # Imprime a sequência 2
         seq1_reversed = list(reversed(seq1))
@@ -137,12 +134,12 @@ def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
             for j in range(cols):
                 f.write(str(matrix[i][j]).center(3) + "\t")
             f.write("\n")
-        # Imprime o último número da matriz no canto superior direito
         f.write("\t U  ")
         for base in seq2:
             f.write("\t" + base.center(3))
-        # Imprime os valores de match, mismatch e gap_penalty na mesma linha que o score
+        # Imprime os valores de match, mismatch, gap_penalty e o score
         f.write("\n\n========== SCORE: " + str(last_score) + " | Match: " + str(match) + " | Mismatch: " + str(mismatch) + " | Gap Penalty: " + str(gap_penalty) + " ==========")
+        f.write("\n\nMEU NUMERO DA CHAMADA EH 7")
         
 with open('input.txt', 'r') as file:
     seq1 = file.readline().strip()
