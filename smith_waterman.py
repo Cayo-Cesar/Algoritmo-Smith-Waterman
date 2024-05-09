@@ -102,7 +102,7 @@ def backtracing(score_matrix, seq1, seq2, match, mismatch, gap_penalty):
             j += 1
 
     # Impressão dos alinhamentos
-    with open('Output.txt', 'a') as f:
+    with open('output.txt', 'a') as f:
         f.write("\n\nAlinhamento:\n\n")
         f.write(align1 + "\n")
         f.write(align2 + "\n")
@@ -125,7 +125,7 @@ def print_matrix(matrix, seq1, seq2, match, mismatch, gap_penalty):
     last_score = matrix[0][-1]
 
     # Salva a matriz em um arquivo txt
-    with open('matrix.txt', 'w') as f:
+    with open('output.txt', 'w') as f:
         # Imprime a sequência 2
         seq1_reversed = list(reversed(seq1))
         # Imprime a matriz de score e a sequência 1 já invertida e é feita a adição do valor U na primeira posição da matriz
